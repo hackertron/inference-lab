@@ -21,12 +21,27 @@ No system CUDA toolkit — the compiler comes from pip. See
 
 ## Quickstart
 
+Start the server (activates the venv and sources `env.sh` for you):
+
 ```bash
-source .venv/bin/activate && source env.sh
-vllm serve Qwen/Qwen3-1.7B --max-model-len 2048 --gpu-memory-utilization 0.75 --max-num-seqs 2
+./dev.sh
 ```
 
-In a second terminal (also `source .venv/bin/activate && source env.sh`):
+Ready when it logs `Application startup complete` (~75 s cold, `torch.compile`
+is cached after that). From a second terminal:
+
+```bash
+curl -sS http://127.0.0.1:8000/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "Qwen/Qwen3-1.7B",
+    "messages": [{"role": "user", "content": "What is a GPU, in one sentence?"}],
+    "max_tokens": 256,
+    "chat_template_kwargs": {"enable_thinking": false}
+  }'
+```
+
+Benchmark it (needs `source .venv/bin/activate && source env.sh` in that terminal):
 
 ```bash
 scripts/bench.sh my-run 2
@@ -35,6 +50,7 @@ scripts/bench.sh my-run 2
 ## Layout
 
 ```
+dev.sh                 start the vLLM server in one command
 env.sh                 CUDA_HOME + PATH for the pip CUDA toolkit (source every session)
 requirements.lock.txt  pinned environment
 scripts/bench.sh       standard benchmark workload -> results/<label>.json
