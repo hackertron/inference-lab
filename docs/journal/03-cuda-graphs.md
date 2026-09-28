@@ -52,6 +52,13 @@ scripts/bench.sh 03-graphs-c2 2
 | A: eager | | | | |
 | B: graphs + compile | | | | |
 
+Observed while testing `dev.sh` (graphs + compile, same settings):
+
+- Cold startup ~75 s, of which `torch.compile` took 27 s. Graph capture: ~1 s, 0.02–0.04 GiB.
+- **KV cache shrank: 16,320 tokens vs 21,376 in eager mode**, with the same
+  `--gpu-memory-utilization 0.75`. The graphs themselves are tiny, so something
+  else is eating ~0.55 GiB — find out what before blaming CUDA graphs.
+
 ## What we learned
 
 TODO
