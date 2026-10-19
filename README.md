@@ -65,8 +65,8 @@ docs/journal/          the write-up, one entry per step
 | 00 | [Setting up: why vLLM wouldn't start](docs/journal/00-setting-up.md) | done |
 | 01 | [First request: prefill vs decode](docs/journal/01-first-request.md) | done |
 | 02 | [First benchmark: reading TTFT and TPOT](docs/journal/02-first-benchmark.md) | done |
-| 03 | [CUDA graphs vs eager mode](docs/journal/03-cuda-graphs.md) | in progress |
-| 04 | Latency vs throughput: concurrency sweep | planned |
+| 03 | [CUDA graphs vs eager mode](docs/journal/03-cuda-graphs.md) | done |
+| 04 | [Latency vs throughput: concurrency sweep](docs/journal/04-concurrency-sweep.md) | in progress |
 
 ### How each entry is written
 
