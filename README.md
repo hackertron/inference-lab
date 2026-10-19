@@ -54,6 +54,7 @@ dev.sh                 start the vLLM server in one command
 env.sh                 CUDA_HOME + PATH for the pip CUDA toolkit (source every session)
 requirements.lock.txt  pinned environment
 scripts/bench.sh       standard benchmark workload -> results/<label>.json
+scripts/plot_sweep.py  concurrency-sweep chart (SVG, no deps) -> docs/journal/img/
 results/               raw benchmark JSON
 docs/journal/          the write-up, one entry per step
 ```
@@ -66,7 +67,7 @@ docs/journal/          the write-up, one entry per step
 | 01 | [First request: prefill vs decode](docs/journal/01-first-request.md) | done |
 | 02 | [First benchmark: reading TTFT and TPOT](docs/journal/02-first-benchmark.md) | done |
 | 03 | [CUDA graphs vs eager mode](docs/journal/03-cuda-graphs.md) | done |
-| 04 | [Latency vs throughput: concurrency sweep](docs/journal/04-concurrency-sweep.md) | in progress |
+| 04 | [Latency vs throughput: concurrency sweep](docs/journal/04-concurrency-sweep.md) | part 1 done |
 
 ### How each entry is written
 
