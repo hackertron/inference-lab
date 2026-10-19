@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" class="root" role="img" aria-label="Latency versus throughput for concurrency 1 to 16">
+<style>
+  .root { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984;
+          --grid:#e7e6e2; --s1:#2a78d6; }
+  @media (prefers-color-scheme: dark) {
+    .root { --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#8f8e86;
+            --grid:#383835; --s1:#3987e5; }
+  }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--ink2); font-size: 12px; }
+  .title { fill: var(--ink); font-size: 16px; font-weight: 600; }
+  .ptitle { fill: var(--ink); font-size: 13px; font-weight: 600; }
+  .tick { fill: var(--muted); font-size: 11px; }
+  .grid { stroke: var(--grid); stroke-width: 1; }
+  .axis { stroke: var(--muted); stroke-width: 1; }
+  .meas { stroke: var(--s1); stroke-width: 2; fill: none; }
+  .measpt { fill: var(--s1); stroke: var(--surface); stroke-width: 2; }
+  .pred { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+  .predpt { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
+  .ref { stroke: var(--ink2); stroke-width: 1; stroke-dasharray: 2 3; }
+  .ptlabel { fill: var(--ink); stroke: var(--surface); stroke-width: 4px; paint-order: stroke; stroke-linejoin: round; }
+</style>
+<rect width="880" height="420" fill="var(--surface)"/>
+<text class="title" x="24" y="30">Qwen3-1.7B on an RTX 3060 Ti: batching more requests</text>
+<circle class="measpt" cx="32" cy="50" r="5"/><text x="42" y="54">measured</text>
+<line class="pred" x1="114" x2="138" y1="50" y2="50"/><circle class="predpt" cx="126" cy="50" r="3.5"/><text x="146" y="54">predicted</text>
+<text x="224" y="54">c = concurrent requests</text>
+<text class="ptitle" x="64" y="88">Time per output token (ms)</text>
+<line class="grid" x1="64" x2="424" y1="354.0" y2="354.0"/>
+<text class="tick" x="56" y="358.0" text-anchor="end">0</text>
+<line class="grid" x1="64" x2="424" y1="291.5" y2="291.5"/>
+<text class="tick" x="56" y="295.5" text-anchor="end">4</text>
+<line class="grid" x1="64" x2="424" y1="229.0" y2="229.0"/>
+<text class="tick" x="56" y="233.0" text-anchor="end">8</text>
+<line class="grid" x1="64" x2="424" y1="166.5" y2="166.5"/>
+<text class="tick" x="56" y="170.5" text-anchor="end">12</text>
+<line class="grid" x1="64" x2="424" y1="104.0" y2="104.0"/>
+<text class="tick" x="56" y="108.0" text-anchor="end">16</text>
+<text class="tick" x="64.0" y="372" text-anchor="middle">0</text>
+<text class="tick" x="154.0" y="372" text-anchor="middle">300</text>
+<text class="tick" x="244.0" y="372" text-anchor="middle">600</text>
+<text class="tick" x="334.0" y="372" text-anchor="middle">900</text>
+<text class="tick" x="424.0" y="372" text-anchor="middle">1,200</text>
+<line class="axis" x1="64" x2="424" y1="354.0" y2="354.0"/>
+<text x="244.0" y="394" text-anchor="middle">output throughput (tok/s)</text>
+<line class="ref" x1="64" x2="424" y1="233.7" y2="233.7"/>
+<text class="tick" x="424" y="247.7" text-anchor="end">bandwidth floor 7.7 ms</text>
+<polyline class="pred" points="92.5,197.8 119.5,189.9 169.0,182.1 259.0,166.5 394.0,135.2"/>
+<circle class="predpt" cx="92.5" cy="197.8" r="3.5"><title>c=1: 95 tok/s, 10.0 ms</title></circle>
+<circle class="predpt" cx="119.5" cy="189.9" r="3.5"><title>c=2: 185 tok/s, 10.5 ms</title></circle>
+<circle class="predpt" cx="169.0" cy="182.1" r="3.5"><title>c=4: 350 tok/s, 11.0 ms</title></circle>
+<circle class="predpt" cx="259.0" cy="166.5" r="3.5"><title>c=8: 650 tok/s, 12.0 ms</title></circle>
+<circle class="predpt" cx="394.0" cy="135.2" r="3.5"><title>c=16: 1,100 tok/s, 14.0 ms</title></circle>
+<polyline class="meas" points="94.0,201.4 118.7,189.0 163.0,182.5 244.7,170.3 364.6,140.9"/>
+<circle class="measpt" cx="94.0" cy="201.4" r="5"><title>c=1: 100 tok/s, 9.8 ms</title></circle>
+<text x="86.0" y="191.4" text-anchor="end" class="ptlabel">c=1</text>
+<circle class="measpt" cx="118.7" cy="189.0" r="5"><title>c=2: 182 tok/s, 10.6 ms</title></circle>
+<text x="110.7" y="179.0" text-anchor="end" class="ptlabel">c=2</text>
+<circle class="measpt" cx="163.0" cy="182.5" r="5"><title>c=4: 330 tok/s, 11.0 ms</title></circle>
+<text x="155.0" y="172.5" text-anchor="end" class="ptlabel">c=4</text>
+<circle class="measpt" cx="244.7" cy="170.3" r="5"><title>c=8: 602 tok/s, 11.8 ms</title></circle>
+<text x="236.7" y="160.3" text-anchor="end" class="ptlabel">c=8</text>
+<circle class="measpt" cx="364.6" cy="140.9" r="5"><title>c=16: 1,002 tok/s, 13.6 ms</title></circle>
+<text x="356.6" y="130.9" text-anchor="end" class="ptlabel">c=16</text>
+<text class="ptitle" x="504" y="88">Mean time to first token (ms)</text>
+<line class="grid" x1="504" x2="864" y1="354.0" y2="354.0"/>
+<text class="tick" x="496" y="358.0" text-anchor="end">0</text>
+<line class="grid" x1="504" x2="864" y1="291.5" y2="291.5"/>
+<text class="tick" x="496" y="295.5" text-anchor="end">150</text>
+<line class="grid" x1="504" x2="864" y1="229.0" y2="229.0"/>
+<text class="tick" x="496" y="233.0" text-anchor="end">300</text>
+<line class="grid" x1="504" x2="864" y1="166.5" y2="166.5"/>
+<text class="tick" x="496" y="170.5" text-anchor="end">450</text>
+<line class="grid" x1="504" x2="864" y1="104.0" y2="104.0"/>
+<text class="tick" x="496" y="108.0" text-anchor="end">600</text>
+<text class="tick" x="504.0" y="372" text-anchor="middle">0</text>
+<text class="tick" x="594.0" y="372" text-anchor="middle">300</text>
+<text class="tick" x="684.0" y="372" text-anchor="middle">600</text>
+<text class="tick" x="774.0" y="372" text-anchor="middle">900</text>
+<text class="tick" x="864.0" y="372" text-anchor="middle">1,200</text>
+<line class="axis" x1="504" x2="864" y1="354.0" y2="354.0"/>
+<text x="684.0" y="394" text-anchor="middle">output throughput (tok/s)</text>
+<polyline class="pred" points="532.5,335.2 559.5,329.0 609.0,312.3 699.0,270.7 834.0,166.5"/>
+<circle class="predpt" cx="532.5" cy="335.2" r="3.5"><title>c=1: 95 tok/s, 45.0 ms</title></circle>
+<circle class="predpt" cx="559.5" cy="329.0" r="3.5"><title>c=2: 185 tok/s, 60.0 ms</title></circle>
+<circle class="predpt" cx="609.0" cy="312.3" r="3.5"><title>c=4: 350 tok/s, 100.0 ms</title></circle>
+<circle class="predpt" cx="699.0" cy="270.7" r="3.5"><title>c=8: 650 tok/s, 200.0 ms</title></circle>
+<circle class="predpt" cx="834.0" cy="166.5" r="3.5"><title>c=16: 1,100 tok/s, 450.0 ms</title></circle>
+<polyline class="meas" points="534.0,337.4 558.7,328.4 603.0,311.9 684.7,268.4 804.6,224.9"/>
+<circle class="measpt" cx="534.0" cy="337.4" r="5"><title>c=1: 100 tok/s, 39.8 ms</title></circle>
+<text x="526.0" y="327.4" text-anchor="end" class="ptlabel">c=1</text>
+<circle class="measpt" cx="558.7" cy="328.4" r="5"><title>c=2: 182 tok/s, 61.6 ms</title></circle>
+<text x="550.7" y="318.4" text-anchor="end" class="ptlabel">c=2</text>
+<circle class="measpt" cx="603.0" cy="311.9" r="5"><title>c=4: 330 tok/s, 101.1 ms</title></circle>
+<text x="595.0" y="301.9" text-anchor="end" class="ptlabel">c=4</text>
+<circle class="measpt" cx="684.7" cy="268.4" r="5"><title>c=8: 602 tok/s, 205.4 ms</title></circle>
+<text x="676.7" y="258.4" text-anchor="end" class="ptlabel">c=8</text>
+<circle class="measpt" cx="804.6" cy="224.9" r="5"><title>c=16: 1,002 tok/s, 309.8 ms</title></circle>
+<text x="796.6" y="214.9" text-anchor="end" class="ptlabel">c=16</text>
+</svg>
